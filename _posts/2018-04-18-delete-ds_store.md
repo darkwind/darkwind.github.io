@@ -1,7 +1,7 @@
 ---
 title: "맥에서 .DS_Store 삭제하는 방법"
 date: 2018-04-18 16:01:00
-layout: category
+layout: post
 category: [macos]
 tags: [DS_Store, command]
 ---
