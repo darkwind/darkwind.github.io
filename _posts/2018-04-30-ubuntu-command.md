@@ -11,6 +11,7 @@ tags: [dpkg]
 ``` bash
 dpkg -l
 ```
+
 rc 된 항목만 찾아서 지우기
 ===
 ``` bash
