@@ -1,5 +1,5 @@
 ---
-title: "Tornado 1.3. User's guide - Asynchronous and non-Blocking I/O"
+title: "Tornado 1.3. User's guide - Coroutines"
 date: 2018-05-14 12:03:00
 layout: post
 categories: [python]
@@ -7,7 +7,7 @@ tags: [tornado]
 ---
 
 Coroutines
----
+===
 
 **Coroutines** 는 Tornado에서 비동기 코드를 작성하는데 권장되는 방법입니다. Coroutines은 Python `yield` 키워드를 사용하여 콜백 체인 대신 실행을 일시 중지했다가 다시 시작합니다. ([gevent](http://www.gevent.org/)와 같은 프레임워크에서 볼 수 있는 협력형 경량 스레드를 coroutines이라고도 하지만, Tornado에서는 모든 coroutines이 명시적 컨텍스트 스위치를 사용하며 비동기 함수라고 합니다).
 
