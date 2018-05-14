@@ -30,6 +30,7 @@ def fetch_coroutine(url):
 ```
 
 Python 3.5: `async` and `await`
+---
 
 Python 3.5에서는 `async`와 `await` 키워드가 도입되었습니다(이러한 키워드를 사용하는 함수는 "native coroutines"라고 부르기도 합니다). Tornado 4.3 부터는 대부분의 `yield`기반 coroutines 대신 사용할 수 있습니다(제한 사항은 다음 단락을 참조 바랍니다). `@gen.coroutine decorator`를 사용하여 함수를 정의하는 대신 `async def foo()`를 사용하고 `yield` 대신 `await`를 사용하면 됩니다. 이 문서의 나머지 부분에서는 이전 버전의 Python과의 호환성을 위해 여전히 `yield` 스타일을 사용하고 있지만 `async`와 `await`는 사용 가능한 경우 더 빠르게 실행됩니다:
 
@@ -51,6 +52,7 @@ async def f():
 > native coroutines은 특정 프레임워크에서는 보이지 않으며 (예: tornado.gen.coroutine 또는 asyncio.coroutine과 같은 데코레이터를 사용하지 않음) 모든 coroutine은 서로 호환되지 않습니다. coroutine runner가 호출되어 첫 번째 coroutine에 의해 선택되고, 그 다음에 곧바로 호출되는 await를 모든 coroutine이 공유합니다. Tornado coroutine runner는 다용도로 설계되어 모든 프레임 워크에서 기다릴 수있는 객체를 허용합니다. 다른 coroutine runner는 제한 될 수 있습니다 (예 : asyncio coroutine 러너는 다른 프레임 워크의 coroutine을 허용하지 않습니다). 이러한 이유로 복수 프레임 워크를 결합한 응용 프로그램에는 Tornado coroutine runner를 사용하는 것이 좋습니다. 이미 asyncio 러너를 사용중인 coroutine에서 Tornado runner를 사용하여 coroutine을 호출하려면 tornado.platform.asyncio.to_asyncio_future 어댑터를 사용하십시오.
 
 How it works
+---
 
 `yield`를 포함하는 함수는 **generator**(생성자) 입니다. 모든 generator는 비동기식입니다. 호출 될 때 완료까지 실행되는 대신 generator 객체를 반환합니다. `@gen.coroutine` decorator는 `yield` 표현식을 통해 generator와 통신하고 [`Future`](http://www.tornadoweb.org/en/stable/concurrent.html#tornado.concurrent.Future)를 반환하여 coroutine의 호출자와 통신합니다.
 
@@ -72,6 +74,7 @@ decorator는 generator에서 [`Future`](http://www.tornadoweb.org/en/stable/conc
 
 
 How to call a coroutine
+---
 
 Coroutine은 정상적인 방법으로 예외를 발생시키지 않습니다. 제기 된 모든 예외는 그것이 산출 될 때까지 [`Future`](http://www.tornadoweb.org/en/stable/concurrent.html#tornado.concurrent.Future)에 갇힐 것입니다. 이것은 올바른 방법으로 Coroutine을 호출하는 것이 중요하다는 것을 의미합니다. 그렇지 않으면 오류가 눈에 띄지 않을 수 있습니다:
 
