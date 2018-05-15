@@ -1,9 +1,9 @@
 ---
-title: "Tornado 0. 시작하면서"
+title: "Tornado Home"
 date: 2018-05-14 12:00:00
 layout: post
 categories: [python]
-tags: [tornado]
+tags: [tornado, home]
 ---
 
 Tornado는 원래 FriendFeed에서 개발 된 Python 웹 프레임 워크 및 비동기 네트워킹 라이브러리입니다.

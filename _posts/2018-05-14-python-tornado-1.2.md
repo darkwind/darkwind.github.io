@@ -1,9 +1,9 @@
 ---
-title: "Tornado 1.2. User's guide - Asynchronous and non-Blocking I/O"
+title: "User's guide - Asynchronous and non-Blocking I/O"
 date: 2018-05-14 12:02:00
 layout: post
 categories: [python]
-tags: [tornado]
+tags: [tornado, user-guide]
 ---
 
 Asynchronous and non-Blocking I/O

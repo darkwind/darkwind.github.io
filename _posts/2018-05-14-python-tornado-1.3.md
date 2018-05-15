@@ -1,9 +1,9 @@
 ---
-title: "Tornado 1.3. User's guide - Coroutines"
+title: "User's guide - Coroutines"
 date: 2018-05-14 12:03:00
 layout: post
 categories: [python]
-tags: [tornado]
+tags: [tornado, user-guide]
 ---
 
 Coroutines
@@ -159,7 +159,7 @@ def parallel_fetch_dict(urls):
 
 Lists 와 dicts 는 `await`와 함께 사용하기 위해 [`tornado.gen.multi`](http://www.tornadoweb.org/en/stable/gen.html#tornado.gen.multi) 로 포장(wrapped)되어야 합니다:
 
-```Python
+```python
 async def parallel_fetch(url1, url2):
     resp1, resp2 = await gen.multi([http_client.fetch(url1),
                                     http_client.fetch(url2)])
@@ -170,7 +170,7 @@ Interleaving
 
 [`Future`](http://www.tornadoweb.org/en/stable/concurrent.html#tornado.concurrent.Future)를 즉시 적용(yielding)하는 대신 저장하는 것이 유용하기 때문에 기다리기 전에 다른 작업을 시작할 수 있습니다.
 
-```Python
+```python
 @gen.coroutine
 def get(self):
     fetch_future = self.fetch_next_chunk()
@@ -189,7 +189,7 @@ Looping
 
 native coroutines에서는 `async for` 를 사용할 수 있습니다. 이전 버전의 Python에서는 `for` 또는 `while` 루프의 반복마다 `yield` 결과를 얻을 수 있는 방법이 없으므로 Looping은 coroutine으로는 까다롭습니다. 대신 [Motor](https://motor.readthedocs.io/en/stable/)의 예제와 같이 루프 조건을 결과에 액세스하는 것과 분리해야합니다:
 
-```Python
+```python
 import motor
 db = motor.MotorClient().test
 
@@ -205,7 +205,7 @@ Running in the background
 
 [`PeriodicCallback`](http://www.tornadoweb.org/en/stable/ioloop.html#tornado.ioloop.PeriodicCallback) 은 coroutines에서는 일반적으로 사용되지 않습니다. 대신, coroutine은 `while True:` 루프를 포함하고 [`tornado.gen.sleep`](http://www.tornadoweb.org/en/stable/gen.html#tornado.gen.sleep)를 사용할 수 있습니다:
 
-```Python
+```python
 @gen.coroutine
 def minute_loop():
     while True:
@@ -219,7 +219,7 @@ IOLoop.current().spawn_callback(minute_loop)
 
 때로는 복잡한 루프가 더 바람직 할 수 있습니다. 예제에서 이전 루프는 `60+N`초 마다 실행됩니다. 여기서 `N`은 `do_something()`의 실행 시간입니다. 정확히 60초 마다 실행하려면 위의 Interleaving패턴을 사용하삽시오:
 
-```Python
+```python
 @gen.coroutine
 def minute_loop2():
     while True:
