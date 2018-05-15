@@ -6,9 +6,6 @@ categories: [python]
 tags: [tornado, user-guide]
 ---
 
-Asynchronous and non-Blocking I/O
-===
-
 실시간 웹 기능을 사용하려면 대부분의 유휴 연결이 오래 지속되어야 합니다. 기존의 동기식 웹 서버에서 이것은 각 사용자에게 하나의 스레드를 할당하는 것을 의미합니다. 이는 매우 비쌉니다.(자원 낭비 / 비효율적).
 
 동시 연결 비용을 최소화하기 위해 Tornado는 single-threaded event loop를 사용합니다. 즉, 한 번에 하나의 작업만 활성화 될 수 있으므로 모든 응용 프로그램 코드는 asynchronous 및 non-blocking을 목표로해야합니다.
