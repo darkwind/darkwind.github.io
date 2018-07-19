@@ -63,6 +63,6 @@ Subclassing `RequestHandler`
 ---
 Tornado 웹 응용 프로그램의 대부분의 작업은 [`RequestHandler`](http://www.tornadoweb.org/en/stable/web.html#tornado.web.RequestHandler)의 하위 클래스에서 수행됩니다. handler subclass의 주요 진입점은 HTTP method 다음에 명명된 메소드입니다: get(), post(), etc. 각 핸들러는 서로 다른 HTTP 액션을 처리하기 위해 이러한 메소드 중 하나 이상을 정의 할 수 있습니다. 위에서 설명한 것처럼 이러한 메서드는 일치하는 라우팅 규칙의 캡처 그룹에 해당하는 인수를 사용하여 호출됩니다.
 
-Within a handler, call methods such as RequestHandler.render or RequestHandler.write to produce a response. render() loads a Template by name and renders it with the given arguments. write() is used for non-template-based output; it accepts strings, bytes, and dictionaries (dicts will be encoded as JSON).
+핸들러 내에서 [`RequestHandler.render`](http://www.tornadoweb.org/en/stable/web.html#tornado.web.RequestHandler.render) 또는 [`RequestHandler.write`](http://www.tornadoweb.org/en/stable/web.html#tornado.web.RequestHandler.write)와 같은 메소드를 호출하여 응답을 생성하십시오. `render()`는 이름으로 [`Template`](http://www.tornadoweb.org/en/stable/template.html#tornado.template.Template)을 로드하고 주어진 인자로 렌더링합니다. `write()`는 템플릿 기반이 아닌 출력에 사용됩니다. strings, bytes, 및 dictionaries를 허용합니다 (dict는 JSON으로 인코딩됩니다).
 
 Many methods in RequestHandler are designed to be overridden in subclasses and be used throughout the application. It is common to define a BaseHandler class that overrides methods such as write_error and get_current_user and then subclass your own BaseHandler instead of RequestHandler for all your specific handlers.
