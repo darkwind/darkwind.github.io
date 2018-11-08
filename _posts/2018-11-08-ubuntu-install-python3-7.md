@@ -5,8 +5,6 @@ categories: [ubuntu, python]
 tags: [install]
 ---
 
-Ubuntu에 Python 3.7.0 설치하는 방법
-===
 
 ``` bash
 $ sudo apt-get install build-essential checkinstall
