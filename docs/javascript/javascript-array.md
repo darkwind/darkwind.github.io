@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Array 다루기
+parent: Javascript
 ---
 
 # Array 다루기
