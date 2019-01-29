@@ -1,23 +1,5 @@
 ---
 layout: default
 ---
-<article class="post-container post-container--single">
-  <header class="post-header">
-    <div class="post-meta">
-      <time datetime="{{ page.date | date: "%Y-%m-%d %H:%M" }}" class="post-meta__date date">{{ page.date | date: "%-d %b %Y" }}</time>
-      {% if page.categories.size > 0 %}
-      &#8226; <span class="post-meta__tags">in {% for categories in page.categories %}<a href="{{ site.baseurl }}/categories/#{{ categories }}">{{ categories }}</a> {% endfor %}</span>
-      {% endif %}
-      {% if page.tags.size > 0 %}
-      &#8226; <span class="post-meta__tags">on {% for tag in page.tags %}<a href="{{ site.baseurl }}/tags/#{{ tag }}">{{ tag }}</a> {% endfor %}</span>
-      {% endif %}
-    </div>
-    <h2 class="post-title"><strong>{{ page.title }}</strong></h2>
-  </header>
 
-  <section class="post">
-    {{ content }}
-  </section>
-  {% if page.comments != false and site.disqus_shortname %}<section id="disqus_thread"></section><!-- /#disqus_thread -->{% endif %}
-</article>
-{% if page.comments != false %}{% include disqus.html %}{% endif %}
+{{ content }}
