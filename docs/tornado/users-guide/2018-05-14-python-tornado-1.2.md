@@ -1,10 +1,12 @@
 ---
-title: "User's guide - Asynchronous and non-Blocking I/O"
-date: 2018-05-14 12:02:00
-layout: post
-categories: [python]
-tags: [tornado, user-guide]
+layout: default
+title: Asynchronous and non-Blocking I/O
+parent: User's guide
+grand_parent: Tornado
+nav_order: 2
 ---
+
+# Asynchronous and non-Blocking I/O
 
 실시간 웹 기능을 사용하려면 대부분의 유휴 연결이 오래 지속되어야 합니다. 기존의 동기식 웹 서버에서 이것은 각 사용자에게 하나의 스레드를 할당하는 것을 의미합니다. 이는 매우 비쌉니다.(자원 낭비 / 비효율적).
 
