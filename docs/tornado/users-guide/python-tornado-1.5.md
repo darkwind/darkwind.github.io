@@ -1,11 +1,12 @@
 ---
-title: "User's guide - Structure of a Tornado web application"
-date: 2018-05-14 12:05:00
-layout: post
-categories: [python]
-tags: [tornado, user-guide]
+layout: default
+title: Structure of a Tornado web application
+parent: User's guide
+grand_parent: Tornado
+nav_order: 5
 ---
 
+# Structure of a Tornado web application
 
 Tornado 웹 어플리케이션은 일반적으로 하나 이상의 [`RequestHandler`][Link_RequestHandler] 서브클래스, 들어오는 요청(requests)을 핸들링하는(처리기로 라우팅하는) [`Application`][Link_Application] 오브젝트 및 `main()` 함수로 구성되어 서버를 시작합니다.
 

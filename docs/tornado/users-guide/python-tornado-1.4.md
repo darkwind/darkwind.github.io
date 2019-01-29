@@ -1,10 +1,12 @@
 ---
-title: "User's guide - Queue example - a concurrent web spider"
-date: 2018-05-14 12:04:00
-layout: post
-categories: [python]
-tags: [tornado, user-guide]
+layout: default
+title: Queue example - a concurrent web spider
+parent: User's guide
+grand_parent: Tornado
+nav_order: 4
 ---
+
+# [`Queue`](https://docs.python.org/3.6/library/queue.html#module-queue) example - a concurrent web spider
 
 Tornado의 [`tornado.queues`](http://www.tornadoweb.org/en/stable/queues.html#module-tornado.queues) 모듈은 module은 coroutines에 대한 asynchronous producer / consumer pattern 을 구현합니다.
 이는 Python 표준 라이브러리의 [`queue`](https://docs.python.org/3.6/library/queue.html#module-queue) 모듈에 의해 threads 용으로 구현 된 패턴과 유사합니다.
