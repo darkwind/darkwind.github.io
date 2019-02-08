@@ -2,6 +2,7 @@
 layout: default
 title: Fork Repository 동기화
 parent: Git
+nav_order: 1
 ---
 
 # Fork Repository 동기화
@@ -40,7 +41,7 @@ From https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY
  * [new branch]      master     -> upstream/master
 ```
 
-upstream repository 의 master branch (혹은 원하는 branch) 로부터 나의 local master branch 로 merge 한다.
+upstream repository 에서 나의 local master branch 로 merge 한다.
 ---
 ``` bash
 $ git checkout master
