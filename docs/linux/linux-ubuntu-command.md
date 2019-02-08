@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Ubuntu Command
-parent: linux
+parent: Linux
 nav_order: 1
 ---
 
