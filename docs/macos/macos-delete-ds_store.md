@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Delete .DS_Store
-parent: Git
+parent: macOS
 nav_order: 1
 ---
 
