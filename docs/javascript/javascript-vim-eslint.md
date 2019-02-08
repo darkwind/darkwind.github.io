@@ -5,6 +5,8 @@ parent: Javascript
 nav_order: 3
 ---
 
+# vim eslint 적용하기
+
 주력으로 자바스크립트(ECMA6) 사용하는 개발자라면 eslint를 global로 설치하는게 편합니다.
 
 관련 모듈을 설치해 줍니다.
