@@ -12,7 +12,7 @@ permalink: /
 이 사이트는 GitHub Pages 에서 운영 중 입니다.
 {: .fs-6 .fw-300 }
 
-[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/pmarsceill/just-the-docs){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/darkwind/darkwind.github.io){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 
