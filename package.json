@@ -9,7 +9,7 @@
     "stylelint": "^9.9.0",
     "stylelint-config-primer": "^3.0.1",
     "trim": ">=0.0.3",
-    "postcss": ">=8.2.10"
+    "postcss": ">=7.0.36"
   },
   "dependencies": {},
   "scripts": {
