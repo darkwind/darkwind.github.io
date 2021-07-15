@@ -1,23 +1,53 @@
-name: Jekyll CI
-
+name: 'Automatic build'
 on:
-  push
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
 
 jobs:
-  jekyll:
-    runs-on: ubuntu-16.04
+  continuous-delivery:
+
+    runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # for posts's lastmod
 
-    # Use GitHub Actions' cache to shorten build times and decrease load on servers
-    - uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          bundler-cache: true
 
-    # Standard usage
-    - uses:  helaili/jekyll-action@2.0.3
-      env:
-        JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
+      - name: Check baseurl
+        run: |
+          baseurl="$(grep '^baseurl:' _config.yml | sed "s/.*: *//;s/['\"]//g;s/#.*//")"
+          if [[ -n $baseurl ]]; then
+            echo "BASE_URL=$baseurl" >> $GITHUB_ENV
+          fi
+
+      - name: Build Site
+        env:
+          JEKYLL_ENV: production
+        run: |
+          bundle exec jekyll b -d "_site$BASE_URL"
+
+      - name: Test Site
+        run: |
+          bash tools/test.sh
+
+      - name: Deploy
+        run: |
+          if [[ -n $BASE_URL ]]; then
+            mv _site$BASE_URL _site-rename
+            rm -rf _site
+            mv _site-rename _site
+          fi
+
+          bash tools/deploy.sh
