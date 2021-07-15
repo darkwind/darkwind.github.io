@@ -1,10 +1,9 @@
 ---
-layout: default
 title: Moment 사용법
-parent: Javascript
+date: 2019-11-11 20:55:00 +0800
+categories: [Development, Javascript]
+tags: [javascript, moment]
 ---
-
-# Moment 사용법
 
 Moment
 ===

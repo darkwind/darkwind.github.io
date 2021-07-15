@@ -1,8 +1,9 @@
 ---
-layout: default
-title: Delete .DS_Store
-parent: macOS
-nav_order: 1
+title: Mac Note
+author: DarkwinD
+date: 2021-01-01 00:00:00 +0000
+categories: [Note]
+tags: [mac]
 ---
 
 # Delete .DS_Store

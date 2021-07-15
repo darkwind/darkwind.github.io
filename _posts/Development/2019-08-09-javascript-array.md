@@ -1,13 +1,15 @@
 ---
-layout: default
 title: Array 다루기
-parent: Javascript
+author: DarkwinD
+date: 2019-08-09 20:55:00 +0800
+categories: [Development, Javascript]
+tags: [javascript, array]
+pin: true
 ---
-
-# Array 다루기
 
 배열 요소 추가/제거
 ===
+
 Code
 ``` javascript
 const jbAry1 = [ 'one', 'two', 'three' ];
