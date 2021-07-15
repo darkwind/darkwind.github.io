@@ -1,13 +1,12 @@
 ---
-layout: default
 title: Fork Repository 동기화
-parent: Git
-nav_order: 1
+author: DarkwinD
+date: 2021-01-01 00:00:00 +0000
+categories: [Development, Git]
+tags: [git]
 ---
 
-# Fork Repository 동기화
-
-Github 원본 repository 에서 업데이트 내용을 받아오기 위해 사용
+## Github 원본 repository 에서 업데이트 내용을 받아오기 위해 사용
 
 현재 remote repository 확인
 ---
