@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>무료 견적서 만들기 | 실무 서식 키트</title>
+  <meta name="description" content="브라우저에서 견적서를 바로 작성하고 인쇄하거나 PDF로 저장하세요. 공급가액, 부가세 10%, 합계, 한글 금액이 자동으로 계산됩니다." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0B2350;
+      --navy2: #163A6B;
+      --blue: #1565D8;
+      --line: #C5CDD8;
+      --input: #FFF8E1;
+      --calc: #EEF3FA;
+      --muted: #5C6570;
+      --paper: #F4F6F9;
+      --warn: #8A1F1A;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      color: var(--navy);
+      background: var(--paper);
+      line-height: 1.6;
+    }
+    a { color: var(--blue); }
+    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header.site {
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      position: sticky; top: 0; z-index: 20;
+    }
+    header.site .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+    .brand { font-weight: 700; color: var(--navy); text-decoration: none; letter-spacing: -0.02em; }
+    .brand small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+    nav a { margin-left: 18px; text-decoration: none; color: var(--navy); font-size: 14px; font-weight: 500; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      border: 0; border-radius: 10px; padding: 11px 16px; font-weight: 600; cursor: pointer;
+      font-family: inherit; font-size: 14px; text-decoration: none;
+    }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-navy { background: var(--navy); color: #fff; }
+    .btn-ghost { background: #fff; color: var(--navy); border: 1px solid var(--line); }
+    .hero { padding: 48px 0 24px; }
+    .hero h1 { font-size: clamp(28px, 4vw, 42px); line-height: 1.25; letter-spacing: -0.03em; margin: 0 0 12px; }
+    .hero p.lead { font-size: 17px; color: var(--muted); margin: 0 0 20px; max-width: 640px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .pill { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 13px; }
+    .layout { display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start; padding-bottom: 64px; }
+    @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } }
+    .panel { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+    .panel h2 { margin: 0 0 14px; font-size: 18px; }
+    label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin: 10px 0 4px; }
+    input, textarea, select {
+      width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
+      font-family: inherit; font-size: 14px; background: var(--input); color: var(--navy);
+    }
+    textarea { min-height: 64px; resize: vertical; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    table.items { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+    table.items th { text-align: left; font-size: 12px; color: var(--muted); font-weight: 600; padding: 4px; }
+    table.items td { padding: 4px; vertical-align: top; }
+    table.items input, table.items select { background: var(--input); padding: 6px 8px; }
+    .col-qty { width: 64px; } .col-price { width: 100px; } .col-tax { width: 72px; } .col-del { width: 36px; }
+    .icon-btn { background: none; border: 0; color: var(--warn); cursor: pointer; font-size: 18px; }
+    .cta {
+      margin: 8px 0 48px; background: var(--navy); color: #fff; border-radius: var(--radius); padding: 28px;
+      display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+    }
+    .cta h2 { margin: 0 0 8px; font-size: 22px; color: #fff; }
+    .cta p { margin: 0; color: #D6DEEA; }
+    .prices { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .price { background: #163A6B; border-radius: 8px; padding: 8px 12px; font-size: 13px; }
+    .legal { color: var(--muted); font-size: 12px; padding-bottom: 40px; }
+    footer.site { border-top: 1px solid var(--line); padding: 20px 0 32px; color: var(--muted); font-size: 12px; background: #fff; }
+
+    /* A4 document */
+    .sheet-wrap { overflow: auto; } .sheet-wrap .sheet { transform-origin: top left; }
+    .sheet {
+      width: 210mm; min-height: 297mm; background: #fff; color: #0B2350;
+      border: 1px solid var(--line); box-shadow: 0 8px 30px rgba(11,35,80,.08);
+      padding: 14mm 12mm 12mm; margin: 0 auto; position: relative;
+    }
+    .sheet h1.doc-title {
+      margin: 0 0 10px; background: var(--navy); color: #fff; text-align: center;
+      font-size: 28px; letter-spacing: .4em; padding: 14px 8px; font-weight: 700;
+    }
+    .meta { display: grid; grid-template-columns: 72px 1fr 60px 1fr 72px 1fr; gap: 0; border: 1px solid var(--navy); margin-bottom: 10px; font-size: 12px; }
+    .meta .k { background: var(--navy2); color: #fff; padding: 6px 8px; font-weight: 600; }
+    .meta .v { padding: 6px 8px; background: var(--input); }
+    .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .party { border: 1px solid var(--navy); font-size: 12px; }
+    .party h3 { margin: 0; background: var(--navy); color: #fff; text-align: center; font-size: 13px; padding: 6px; font-weight: 600; }
+    .party dl { margin: 0; display: grid; grid-template-columns: 76px 1fr; }
+    .party dt { background: #F0F3F8; padding: 6px 8px; color: var(--muted); font-weight: 600; border-top: 1px solid var(--line); }
+    .party dd { margin: 0; padding: 6px 8px; background: var(--calc); border-top: 1px solid var(--line); min-height: 28px; }
+    .intro { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+    table.doc { width: 100%; border-collapse: collapse; font-size: 12px; }
+    table.doc th { background: var(--navy); color: #fff; font-weight: 600; padding: 7px 4px; }
+    table.doc td { border: 1px solid var(--line); padding: 6px 4px; height: 26px; }
+    table.doc td.num { text-align: right; background: var(--calc); }
+    table.doc td.no { text-align: center; background: #F0F3F8; color: var(--muted); }
+    table.doc tfoot td { background: var(--navy); color: #fff; font-weight: 700; }
+    .sums { display: grid; grid-template-columns: 1fr 1fr 1.1fr; gap: 0; border: 1px solid var(--navy); border-top: 0; font-size: 13px; }
+    .sums div { padding: 8px; background: #E8EEF7; display: flex; justify-content: space-between; }
+    .sums .grand { background: var(--navy); color: #fff; font-weight: 700; font-size: 15px; }
+    .hangul { border: 1px solid var(--navy); border-top: 0; padding: 8px 10px; background: #F0F3F8; font-weight: 700; font-size: 14px; margin-bottom: 10px; }
+    .hangul span { font-weight: 600; color: var(--muted); font-size: 12px; margin-right: 10px; }
+    .terms { display: grid; grid-template-columns: 76px 1fr 60px 1fr; border: 1px solid var(--line); font-size: 12px; }
+    .terms .k { background: #F0F3F8; padding: 8px; color: var(--muted); font-weight: 600; }
+    .terms .v { padding: 8px; background: var(--input); white-space: pre-wrap; }
+    .sign { text-align: right; margin-top: 16px; font-size: 14px; font-weight: 700; }
+    .sign small { display: block; font-weight: 400; color: var(--muted); font-size: 11px; margin-top: 4px; }
+    .disc { margin-top: 14px; font-size: 10px; color: var(--muted); }
+
+    @media print {
+      body { background: #fff; }
+      header.site, .hero, .form-col, .cta, .legal, footer.site, .no-print { display: none !important; }
+      .layout { display: block; padding: 0; }
+      .sheet-wrap { overflow: visible; }
+      .sheet { box-shadow: none; border: 0; margin: 0; width: auto; min-height: auto; padding: 0; }
+      @page { size: A4 portrait; margin: 12mm; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <a class="brand" href="#">실무 서식 키트<small>견적서 · 거래명세서 · 프리랜서 장부</small></a>
+      <nav>
+        <a href="#maker">견적서 작성</a>
+        <a href="#kit">엑셀 키트</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero wrap">
+    <div class="pills">
+      <span class="pill">부가세 10% 자동</span>
+      <span class="pill">한글 금액 표기</span>
+      <span class="pill">A4 인쇄 · PDF 저장</span>
+      <span class="pill">설치 없이 브라우저에서</span>
+    </div>
+    <h1>견적서, 30초면 끝납니다.</h1>
+    <p class="lead">상호와 품목만 적으면 공급가액, 부가세, 합계와 한글 금액이 자동으로 계산됩니다. 서버에 저장하지 않으니 작성 내용은 이 브라우저에만 있습니다.</p>
+  </section>
+
+  <div class="wrap layout" id="maker">
+    <div class="form-col">
+      <div class="panel">
+        <h2>기본 정보</h2>
+        <div class="grid2">
+          <div><label for="docNo">문서번호</label><input id="docNo" value="EST-2026-001" /></div>
+          <div><label for="docDate">작성일</label><input id="docDate" type="date" /></div>
+        </div>
+        <div class="grid2">
+          <div><label for="validDate">유효기한</label><input id="validDate" type="date" /></div>
+          <div><label for="validDays">유효 일수</label><input id="validDays" type="number" min="1" value="15" /></div>
+        </div>
+        <h2 style="margin-top:22px">공급자</h2>
+        <label for="sName">상호</label><input id="sName" placeholder="상호" />
+        <div class="grid2">
+          <div><label for="sCeo">대표자</label><input id="sCeo" /></div>
+          <div><label for="sBiz">사업자등록번호</label><input id="sBiz" placeholder="000-00-00000" /></div>
+        </div>
+        <label for="sAddr">주소</label><input id="sAddr" />
+        <label for="sContact">연락처</label><input id="sContact" placeholder="전화 · 이메일" />
+        <h2 style="margin-top:22px">공급받는 자</h2>
+        <label for="cName">상호</label><input id="cName" />
+        <div class="grid2">
+          <div><label for="cCeo">대표자</label><input id="cCeo" /></div>
+          <div><label for="cBiz">사업자등록번호</label><input id="cBiz" /></div>
+        </div>
+        <label for="cAddr">주소</label><input id="cAddr" />
+        <label for="cContact">연락처</label><input id="cContact" />
+        <label for="payTerm">결제조건</label><input id="payTerm" placeholder="예: 계약금 50%, 잔금 납품 시" />
+        <label for="dueTerm">납기</label><input id="dueTerm" placeholder="예: 계약 후 14일 이내" />
+        <label for="notes">특기사항</label><textarea id="notes" placeholder="유효 기간, 범위 외 작업 협의 등"></textarea>
+        <h2 style="margin-top:22px">품목</h2>
+        <table class="items" id="itemTable">
+          <thead>
+            <tr>
+              <th>품목</th>
+              <th class="col-qty">수량</th>
+              <th class="col-price">단가(공급가)</th>
+              <th class="col-tax">과세</th>
+              <th class="col-del"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="actions">
+          <button type="button" class="btn btn-ghost" id="addRow">품목 추가</button>
+          <button type="button" class="btn btn-ghost" id="fillSample">예시 채우기</button>
+          <button type="button" class="btn btn-ghost" id="clearAll">비우기</button>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn btn-navy" id="printBtn">인쇄 또는 PDF로 저장</button>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin:12px 0 0">인쇄 창에서 대상을 ‘PDF로 저장’으로 고르면 파일이 만들어집니다. 이 페이지는 서버로 내용을 보내지 않습니다.</p>
+      </div>
+    </div>
+
+    <div class="sheet-wrap">
+      <article class="sheet" id="sheet">
+        <h1 class="doc-title">견 적 서</h1>
+        <div class="meta">
+          <div class="k">문서번호</div><div class="v" id="vDocNo"></div>
+          <div class="k">작성일</div><div class="v" id="vDocDate"></div>
+          <div class="k">유효기한</div><div class="v" id="vValid"></div>
+        </div>
+        <div class="parties">
+          <div class="party">
+            <h3>공 급 자</h3>
+            <dl>
+              <dt>상호</dt><dd id="vSName"></dd>
+              <dt>대표자</dt><dd id="vSCeo"></dd>
+              <dt>등록번호</dt><dd id="vSBiz"></dd>
+              <dt>주소</dt><dd id="vSAddr"></dd>
+              <dt>연락처</dt><dd id="vSContact"></dd>
+            </dl>
+          </div>
+          <div class="party">
+            <h3>공 급 받 는 자</h3>
+            <dl>
+              <dt>상호</dt><dd id="vCName"></dd>
+              <dt>대표자</dt><dd id="vCCeo"></dd>
+              <dt>등록번호</dt><dd id="vCBiz"></dd>
+              <dt>주소</dt><dd id="vCAddr"></dd>
+              <dt>연락처</dt><dd id="vCContact"></dd>
+            </dl>
+          </div>
+        </div>
+        <p class="intro">아래와 같이 견적합니다.</p>
+        <table class="doc">
+          <thead>
+            <tr>
+              <th style="width:36px">No</th>
+              <th>품목</th>
+              <th style="width:70px">수량</th>
+              <th style="width:90px">단가</th>
+              <th style="width:90px">공급가액</th>
+              <th style="width:80px">부가세</th>
+              <th style="width:90px">합계</th>
+            </tr>
+          </thead>
+          <tbody id="vItems"></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" style="text-align:center">합  계</td>
+              <td class="num" id="vSupply">0</td>
+              <td class="num" id="vVat">0</td>
+              <td class="num" id="vTotal">0</td>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="sums">
+          <div><span>공급가액</span><strong id="vSupply2">₩0</strong></div>
+          <div><span>부가세</span><strong id="vVat2">₩0</strong></div>
+          <div class="grand"><span>합계</span><strong id="vTotal2">₩0</strong></div>
+        </div>
+        <div class="hangul"><span>금액 (한글)</span><b id="vHangul">일금 영원정</b></div>
+        <div class="terms">
+          <div class="k">결제조건</div><div class="v" id="vPay"></div>
+          <div class="k">납기</div><div class="v" id="vDue"></div>
+          <div class="k">특기사항</div><div class="v" id="vNotes" style="grid-column: 2 / 5"></div>
+        </div>
+        <p class="intro" style="margin-top:12px">위와 같이 견적합니다.</p>
+        <div class="sign"><span id="vSign">공급자</span>  (인)<small>공급자 직인 또는 서명</small></div>
+        <p class="disc">본 서식은 거래 기록을 돕기 위한 양식입니다. 세금계산서·계산서를 대신하지 않으며, 세무·법률 자문이 아닙니다. 작성 내용은 이 브라우저에서만 계산됩니다.</p>
+      </article>
+    </div>
+  </div>
+
+  <section class="wrap cta" id="kit">
+    <div>
+      <h2>자주 쓰는 거래처와 거래명세서까지 한 세트</h2>
+      <p>이 페이지는 무료 견적서입니다. 엑셀 키트에는 거래처·상품 목록이 붙는 견적서, 거래명세서, 3.3% 원천징수가 되는 프리랜서 장부가 들어 있습니다. 두 가지 묶음은 따로 살 때보다 3,000원 저렴합니다.</p>
+      <div class="prices">
+        <div class="price">견적서·거래명세서 세트  12,000원</div>
+        <div class="price">프리랜서 장부  15,000원</div>
+        <div class="price">두 가지 묶음  24,000원</div>
+      </div>
+    </div>
+    <a class="btn btn-primary" id="ctaLink" href="https://kmong.com/gig/876840">크몽에서 엑셀 키트 보기</a>
+  </section>
+
+  <section class="wrap legal">
+    <p>단가는 부가세 별도(공급가)입니다. 공급가액은 수량×단가를 원 단위로 반올림하고, 부가세는 공급가액의 10%를 원 단위로 반올림합니다. 면세 품목은 부가세를 0으로 둡니다.</p>
+    <p>본 페이지와 엑셀 서식은 세무·법률 자문이 아니며, 세금계산서·부가세·종합소득세 신고를 대신하지 않습니다. 신고 전 홈택스 자료와 세무 전문가의 확인을 권합니다.</p>
+  </section>
+
+  <footer class="site">
+    <div class="wrap">실무 서식 키트  ·  무료 견적서</div>
+  </footer>
+
+  <script>
+    const DIG = "일이삼사오육칠팔구";
+    function group(n) {
+      n = Math.floor(Math.abs(n));
+      if (n === 0) return "";
+      const thou = Math.floor(n / 1000);
+      const hun = Math.floor((n % 1000) / 100);
+      const ten = Math.floor((n % 100) / 10);
+      const one = n % 10;
+      let s = "";
+      if (thou) s += DIG[thou - 1] + "천";
+      if (hun) s += DIG[hun - 1] + "백";
+      if (ten === 1) s += "십";
+      else if (ten > 1) s += DIG[ten - 1] + "십";
+      if (one) s += DIG[one - 1];
+      return s;
+    }
+    function hangulWon(amount) {
+      const n = Math.round(Number(amount) || 0);
+      if (!n) return "일금 영원정";
+      const jo = Math.floor(n / 1e12);
+      const eok = Math.floor((n % 1e12) / 1e8);
+      const man = Math.floor((n % 1e8) / 1e4);
+      const rest = n % 10000;
+      let s = "일금 ";
+      if (jo) s += group(jo) + "조";
+      if (eok) s += group(eok) + "억";
+      if (man) s += group(man) + "만";
+      s += group(rest) + "원정";
+      return s;
+    }
+    function won(n) { return "₩" + Number(n || 0).toLocaleString("ko-KR"); }
+    function num(n) { return Number(n || 0).toLocaleString("ko-KR"); }
+    function todayISO() {
+      const d = new Date();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return d.getFullYear() + "-" + m + "-" + day;
+    }
+    function addDays(iso, days) {
+      const d = new Date(iso + "T00:00:00");
+      d.setDate(d.getDate() + Number(days || 0));
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return d.getFullYear() + "-" + m + "-" + day;
+    }
+
+    const tbody = document.querySelector("#itemTable tbody");
+    function addRow(data = {}) {
+      if (tbody.children.length >= 12) return;
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><input class="i-name" placeholder="품목" value="${data.name || ""}" />
+            <input class="i-spec" placeholder="규격 (선택)" value="${data.spec || ""}" style="margin-top:4px;background:#fff" /></td>
+        <td><input class="i-qty col-qty" type="number" min="0" step="1" value="${data.qty ?? ""}" /></td>
+        <td><input class="i-price" type="number" min="0" step="1" value="${data.price ?? ""}" /></td>
+        <td><select class="i-tax"><option value="과세"${data.tax === "면세" ? "" : " selected"}>과세</option><option value="면세"${data.tax === "면세" ? " selected" : ""}>면세</option></select></td>
+        <td><button type="button" class="icon-btn" title="삭제" aria-label="삭제">&times;</button></td>`;
+      tr.querySelector(".icon-btn").addEventListener("click", () => { tr.remove(); render(); });
+      tr.querySelectorAll("input,select").forEach(el => el.addEventListener("input", render));
+      tbody.appendChild(tr);
+      render();
+    }
+
+    const fields = ["docNo","docDate","validDate","validDays","sName","sCeo","sBiz","sAddr","sContact","cName","cCeo","cBiz","cAddr","cContact","payTerm","dueTerm","notes"];
+    function collectItems() {
+      return [...tbody.querySelectorAll("tr")].map(tr => ({
+        name: tr.querySelector(".i-name").value.trim(),
+        spec: tr.querySelector(".i-spec").value.trim(),
+        qty: tr.querySelector(".i-qty").value,
+        price: tr.querySelector(".i-price").value,
+        tax: tr.querySelector(".i-tax").value
+      })).filter(r => r.name || r.qty || r.price);
+    }
+    function render() {
+      const v = id => document.getElementById(id).value;
+      document.getElementById("vDocNo").textContent = v("docNo");
+      document.getElementById("vDocDate").textContent = v("docDate");
+      document.getElementById("vValid").textContent = v("validDate");
+      document.getElementById("vSName").textContent = v("sName");
+      document.getElementById("vSCeo").textContent = v("sCeo");
+      document.getElementById("vSBiz").textContent = v("sBiz");
+      document.getElementById("vSAddr").textContent = v("sAddr");
+      document.getElementById("vSContact").textContent = v("sContact");
+      document.getElementById("vCName").textContent = v("cName");
+      document.getElementById("vCCeo").textContent = v("cCeo");
+      document.getElementById("vCBiz").textContent = v("cBiz");
+      document.getElementById("vCAddr").textContent = v("cAddr");
+      document.getElementById("vCContact").textContent = v("cContact");
+      document.getElementById("vPay").textContent = v("payTerm");
+      document.getElementById("vDue").textContent = v("dueTerm");
+      document.getElementById("vNotes").textContent = v("notes");
+      document.getElementById("vSign").textContent = v("sName") || "공급자";
+      const items = collectItems();
+      const box = document.getElementById("vItems");
+      box.innerHTML = "";
+      let supply = 0, vat = 0;
+      const rows = Math.max(items.length, 8);
+      for (let i = 0; i < rows; i++) {
+        const r = items[i];
+        let s = "", tax = 0, tot = "", qty = "", price = "", name = "";
+        if (r && (r.name || r.qty || r.price)) {
+          const q = Number(r.qty || 0), p = Number(r.price || 0);
+          s = Math.round(q * p);
+          tax = r.tax === "면세" ? 0 : Math.round(s * 0.1);
+          tot = s + tax;
+          supply += s; vat += tax;
+          qty = num(q); price = num(p);
+          name = r.name + (r.spec ? `<div style="color:#5C6570;font-size:11px">${r.spec}</div>` : "");
+        }
+        box.insertAdjacentHTML("beforeend", `<tr>
+          <td class="no">${r && r.name ? i + 1 : ""}</td>
+          <td>${name}</td>
+          <td class="num">${qty}</td>
+          <td class="num">${price}</td>
+          <td class="num">${s === "" || s === 0 && !r ? "" : num(s)}</td>
+          <td class="num">${r && r.name ? num(tax) : ""}</td>
+          <td class="num">${tot === "" ? "" : num(tot)}</td>
+        </tr>`);
+      }
+      const total = supply + vat;
+      document.getElementById("vSupply").textContent = num(supply);
+      document.getElementById("vVat").textContent = num(vat);
+      document.getElementById("vTotal").textContent = num(total);
+      document.getElementById("vSupply2").textContent = won(supply);
+      document.getElementById("vVat2").textContent = won(vat);
+      document.getElementById("vTotal2").textContent = won(total);
+      document.getElementById("vHangul").textContent = hangulWon(total);
+    }
+
+    function fillSample() {
+      document.getElementById("docNo").value = "EST-2026-001";
+      document.getElementById("sName").value = "미리내디자인";
+      document.getElementById("sCeo").value = "김도윤";
+      document.getElementById("sBiz").value = "000-00-00000";
+      document.getElementById("sAddr").value = "서울특별시 마포구 월드컵북로 000, 3층";
+      document.getElementById("sContact").value = "02-0000-0000  ·  hello@example.co.kr";
+      document.getElementById("cName").value = "주식회사 솔빛커머스";
+      document.getElementById("cCeo").value = "이서연";
+      document.getElementById("cBiz").value = "000-11-11111";
+      document.getElementById("cAddr").value = "서울특별시 강남구 테헤란로 000, 8층";
+      document.getElementById("cContact").value = "02-1111-0000  ·  contact@solbit.example";
+      document.getElementById("payTerm").value = "계약금 50%, 잔금 납품 시";
+      document.getElementById("dueTerm").value = "계약 후 14일 이내";
+      document.getElementById("notes").value = "본 견적은 작성일로부터 유효기한까지 유효합니다. 범위에 없는 작업은 별도 협의입니다.";
+      tbody.innerHTML = "";
+      addRow({name:"브랜드 웹사이트 리뉴얼", spec:"반응형, 10페이지 이내", qty:1, price:2500000, tax:"과세"});
+      addRow({name:"모바일 UI 디자인", spec:"주요 화면 12장", qty:1, price:1200000, tax:"과세"});
+      addRow({name:"촬영 소스 보정", spec:"장당", qty:20, price:15000, tax:"과세"});
+      render();
+    }
+    function clearAll() {
+      fields.forEach(id => { if (id !== "docDate" && id !== "validDate" && id !== "validDays") document.getElementById(id).value = ""; });
+      tbody.innerHTML = "";
+      addRow(); addRow(); addRow();
+      render();
+    }
+
+    document.getElementById("addRow").addEventListener("click", () => addRow());
+    document.getElementById("fillSample").addEventListener("click", fillSample);
+    document.getElementById("clearAll").addEventListener("click", clearAll);
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
+    document.getElementById("docDate").addEventListener("input", () => {
+      const d = document.getElementById("docDate").value;
+      const days = document.getElementById("validDays").value || 15;
+      if (d) document.getElementById("validDate").value = addDays(d, days);
+      render();
+    });
+    document.getElementById("validDays").addEventListener("input", () => {
+      const d = document.getElementById("docDate").value;
+      const days = document.getElementById("validDays").value || 15;
+      if (d) document.getElementById("validDate").value = addDays(d, days);
+      render();
+    });
+    fields.forEach(id => document.getElementById(id).addEventListener("input", render));
+
+    const q = new URLSearchParams(location.search);
+    const d = todayISO();
+    document.getElementById("docDate").value = d;
+    document.getElementById("validDate").value = addDays(d, 15);
+    if (q.get("demo") === "1") fillSample();
+    else { addRow(); addRow(); addRow(); render(); }
+
+    // 간단 검증용: 콘솔에서 window.__testHangul()
+    window.__testHangul = () => hangulWon(4400000);
+    window.__quoteTotal = () => {
+      const items = collectItems();
+      let s=0,v=0;
+      items.forEach(r => { const x=Math.round(Number(r.qty||0)*Number(r.price||0)); s+=x; v+= r.tax==="면세"?0:Math.round(x*0.1); });
+      return {supply:s, vat:v, total:s+v, hangul:hangulWon(s+v)};
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>DD3DScanner 지원 (Support)</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #ffffff;
+      --fg: #1d1d1f;
+      --muted: #6e6e73;
+      --card: #f5f5f7;
+      --border: #d2d2d7;
+      --accent: #0066cc;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #000000;
+        --fg: #f5f5f7;
+        --muted: #86868b;
+        --card: #1c1c1e;
+        --border: #38383a;
+        --accent: #2997ff;
+      }
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 24px 20px 64px;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    header {
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    h1 {
+      font-size: 1.75rem;
+      line-height: 1.3;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    .meta {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .summary {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 0 0 28px;
+      font-size: 0.95rem;
+    }
+    .summary strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+    h2 {
+      font-size: 1.15rem;
+      margin: 28px 0 10px;
+      letter-spacing: -0.01em;
+    }
+    p, ul {
+      margin: 0 0 14px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 44px 0;
+    }
+    footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>DD3DScanner 지원</h1>
+      <p class="meta">최종 업데이트: 2026년 11월 13일</p>
+    </header>
+
+    <div class="summary">
+      <strong>요약</strong>
+      DD3DScanner는 LiDAR와 Object Capture로 물체를 촬영해, 기기 안에서 3D 모델을 만드는 iPhone 앱입니다. 개인정보를 수집하거나 외부 서버로 전송하지 않습니다.
+    </div>
+
+    <section>
+      <h2>1. 앱 소개</h2>
+      <p>
+        DD3DScanner는 LiDAR 스캐너가 있는 iPhone에서 물체 주변을 촬영하고, RealityKit Object Capture로 텍스처가 입혀진 3D 모델(USDZ)을 만듭니다. 촬영한 사진, 깊이 정보, 복원된 모델은 모두 기기 안(앱 샌드박스)에서만 처리·보관됩니다. 회원가입이나 로그인은 없으며, 분석·광고·추적 SDK도 없습니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. 문의</h2>
+      <p>앱 사용, 구독, 오류에 관한 문의는 아래로 보내 주세요.</p>
+      <ul>
+        <li>개발자: 이성재 (Lee Sung-Jae)</li>
+        <li>이메일: <a href="mailto:kyoya2@gmail.com">kyoya2@gmail.com</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. 지원 기기</h2>
+      <ul>
+        <li>LiDAR 스캐너가 있는 iPhone. 앱이 안내하는 기준은 iPhone 12 Pro 이상의 Pro·Pro Max 모델입니다.</li>
+        <li>iOS 26.0 이상.</li>
+        <li>iPhone 전용입니다. 조건을 만족하지 않으면 “이 기기에서는 스캔할 수 없습니다”가 표시됩니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. 무료와 Pro</h2>
+      <p>Pro는 월간·연간 자동 갱신 구독입니다. 가격은 구독 화면에 App Store 상품 정보로 표시됩니다.</p>
+      <ul>
+        <li><strong>무료</strong>: 촬영, 기기 안 3D 복원, 앱 안에서 3D 보기, 스캔 3개까지 보관.</li>
+        <li><strong>Pro</strong>: 스캔 무제한 보관, USDZ 공유, OBJ 내보내기(텍스처 포함 ZIP), STL 내보내기(3D 프린팅용, mm·Z-up), PLY 내보내기, 원본 사진 ZIP 내보내기, AR로 보기.</li>
+      </ul>
+      <p>
+        구독이 끝나거나 만료되어도 이미 만든 스캔은 삭제되거나 숨겨지지 않습니다. 제한되는 것은 새 스캔(무료는 3개까지)과 공유·내보내기·AR 보기입니다. 이미 촬영한 사진으로 3D 모델을 다시 만드는 일은 구독 없이 할 수 있습니다.
+      </p>
+      <p>
+        무료 상태에서는 스캔 목록에 “무료 스캔 N/3 사용 중”이 보이고, 내보내기 메뉴의 Pro 항목에는 자물쇠와 “(Pro)”가 붙습니다. 그 항목을 누르면 구독 화면이 열립니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>5. 구매 복원</h2>
+      <p>같은 Apple 계정으로 구입한 Pro를 이 기기에서 다시 확인하려면 구독 화면의 구매 복원 버튼을 누릅니다.</p>
+      <ul>
+        <li>스캔 목록(제목 “3D 스캔”) 오른쪽 위의 <strong>Pro</strong>를 누릅니다.</li>
+        <li>같은 화면은 무료 한도(3개)에 도달한 뒤 <strong>새 스캔</strong>을 누르거나, 스캔의 <strong>내보내기</strong>에서 Pro 기능(USDZ 공유, OBJ/STL/PLY, 원본 사진, AR로 보기)을 골라도 열립니다.</li>
+        <li>그 화면의 구매 복원 버튼은 앱이 문구를 직접 쓰지 않고, Apple StoreKit 구독 화면이 표시하는 시스템 버튼입니다. 영어에서는 Restore Purchases로 보입니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. 구독 취소</h2>
+      <ul>
+        <li>iOS <strong>설정 &gt; Apple 계정 &gt; 구독</strong>에서 DD3DScanner를 선택해 취소합니다. (영어: Settings &gt; Apple Account &gt; Subscriptions)</li>
+        <li>이미 Pro인 경우, 앱 스캔 목록 오른쪽 위의 <strong>구독 관리</strong>를 눌러도 Apple 구독 관리 화면이 열립니다.</li>
+      </ul>
+      <p>
+        자동 갱신을 꺼도, Apple이 알려 주는 만료 시각까지는 Pro가 유지됩니다. 만료된 뒤에는 새 스캔(3개 초과)과 Pro 기능만 막히고, 기존 스캔은 그대로 남습니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>7. 잘 스캔하려면</h2>
+      <p>촬영 화면이 단계마다 같은 안내를 보여 줍니다.</p>
+      <ul>
+        <li>스캔할 물체를 화면 가운데에 둡니다.</li>
+        <li>감지된 상자가 물체 전체를 감싸도록 크기를 조정한 뒤 촬영을 시작합니다.</li>
+        <li>물체 주위를 천천히 한 바퀴 돌며 촬영합니다.</li>
+        <li>한 바퀴를 마치면, 물체를 뒤집어 아랫면까지 찍거나 같은 자세로 한 바퀴 더 찍을 수 있습니다. 뒤집지 않는 편이 나은 물체는 앱이 “뒤집지 않는 것이 좋습니다. 높이를 바꿔 한 바퀴 더 촬영하면 품질이 좋아집니다.”라고 안내합니다.</li>
+        <li>너무 어둡거나, 너무 빠르거나, 너무 가깝거나 멀거나, 물체가 화면 밖으로 나가면 촬영 중 안내가 뜹니다. 밝은 곳에서 천천히, 물체가 화면 안에 들어오게 맞춥니다.</li>
+        <li>3D 모델을 만드는 동안에는 앱을 화면에 켜 둡니다. 다른 앱으로 전환하면 처리가 중단될 수 있습니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>8. 복원이 실패하거나 중단된 경우</h2>
+      <p>
+        3D 모델 만들기가 실패하거나, 처리를 취소하거나, 처리 중에 앱이 종료되어도 촬영한 사진은 지워지지 않습니다. 목록에는 “처리 필요”로 남습니다.
+      </p>
+      <ul>
+        <li>실패하면 “3D 모델을 만들지 못했습니다”가 나오고, <strong>다시 시도</strong>로 같은 사진으로 다시 만들 수 있습니다. 사진을 보관한다는 안내도 함께 나옵니다.</li>
+        <li>처리를 취소하면 “처리를 취소했습니다”가 나옵니다. 목록에서 그 스캔을 연 뒤 <strong>3D 모델 만들기</strong>로 다시 처리할 수 있습니다.</li>
+        <li>이 다시 만들기는 구독 여부와 관계없습니다.</li>
+      </ul>
+      <p>
+        촬영 화면에서 <strong>스캔 취소</strong>를 확인하면, 그때까지 찍은 사진은 삭제됩니다. 복원(3D 모델 만들기)을 취소하는 것과는 다릅니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>9. 개인정보처리방침과 이용약관</h2>
+      <ul>
+        <li><a href="https://darkwind.github.io/DD3DScanner/privacy/">개인정보처리방침 (Privacy Policy)</a></li>
+        <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener noreferrer">Apple 표준 사용권 계약 (Standard EULA)</a></li>
+      </ul>
+    </section>
+
+    <hr>
+
+    <section lang="en">
+      <header>
+        <h1>DD3DScanner Support</h1>
+        <p class="meta">Last updated: November 13, 2026</p>
+      </header>
+
+      <div class="summary">
+        <strong>Summary</strong>
+        DD3DScanner is an iPhone app that captures an object with LiDAR and Object Capture, then builds the 3D model on the device. It does not collect personal data or send it to a server.
+      </div>
+
+      <h2>1. About the app</h2>
+      <p>
+        On a LiDAR iPhone, DD3DScanner photographs an object and uses RealityKit Object Capture to create a textured 3D model (USDZ). Photos, depth data, and the reconstructed model stay in the app sandbox on your device. There is no account, and the app includes no analytics, advertising, or tracking SDK.
+      </p>
+
+      <h2>2. Contact</h2>
+      <ul>
+        <li>Developer: 이성재 (Lee Sung-Jae)</li>
+        <li>Email: <a href="mailto:kyoya2@gmail.com">kyoya2@gmail.com</a></li>
+      </ul>
+
+      <h2>3. Supported devices</h2>
+      <ul>
+        <li>iPhone with a LiDAR scanner. The app asks for an iPhone 12 Pro or later Pro or Pro Max.</li>
+        <li>iOS 26.0 or later.</li>
+        <li>iPhone only. Other devices show “이 기기에서는 스캔할 수 없습니다” (Scanning isn’t available on this device).</li>
+      </ul>
+
+      <h2>4. Free and Pro</h2>
+      <p>Pro is an auto-renewable monthly or yearly subscription. The price shown on the subscription screen comes from the App Store product.</p>
+      <ul>
+        <li><strong>Free</strong>: capture, on-device reconstruction, in-app 3D viewing, and up to 3 saved scans.</li>
+        <li><strong>Pro</strong>: unlimited saved scans, USDZ sharing, OBJ export (ZIP with textures), STL export for 3D printing (millimeters, Z-up), PLY export, original-photo ZIP export, and AR view.</li>
+      </ul>
+      <p>
+        When the subscription ends, existing scans are not deleted or hidden. What stops is creating a new scan beyond the free limit of 3, plus sharing, export, and AR view. Building a 3D model again from photos you already captured does not require Pro.
+      </p>
+      <p>
+        Without Pro, the scan list shows how many of the 3 free scans are in use. Pro actions in the export menu are marked with a lock and “(Pro)” and open the subscription screen.
+      </p>
+
+      <h2>5. Restore purchases</h2>
+      <p>To restore Pro bought with the same Apple Account, use the restore button on the subscription screen.</p>
+      <ul>
+        <li>On the scan list (title “3D 스캔”), tap <strong>Pro</strong> at the top right.</li>
+        <li>The same screen opens if you tap <strong>새 스캔</strong> (New Scan) after you already have 3 scans, or if you pick a Pro action from a scan’s export menu (USDZ share, OBJ, STL, PLY, original photos, or AR view).</li>
+        <li>The restore control is Apple’s system button on the StoreKit subscription screen. The app does not set its own label. In English it reads Restore Purchases.</li>
+      </ul>
+
+      <h2>6. Cancel a subscription</h2>
+      <ul>
+        <li>In the iOS Settings app, open <strong>Apple Account &gt; Subscriptions</strong> and cancel DD3DScanner. (Korean: 설정 &gt; Apple 계정 &gt; 구독)</li>
+        <li>If you already have Pro, <strong>구독 관리</strong> (Manage Subscription) at the top right of the scan list opens Apple’s subscription management sheet.</li>
+      </ul>
+      <p>
+        Turning off auto-renew keeps Pro until the expiration time Apple reports. After that, only new scans past the free limit and Pro features are blocked. Scans you already have remain.
+      </p>
+
+      <h2>7. Tips for a good scan</h2>
+      <p>The capture screen shows these hints as you go.</p>
+      <ul>
+        <li>Place the object in the center of the frame.</li>
+        <li>Resize the detection box so it surrounds the whole object, then start capture.</li>
+        <li>Walk slowly once around the object.</li>
+        <li>After one pass you can flip the object to capture the underside, or take another lap in the same pose. If flipping would hurt the scan, the app says so and suggests another lap from a different height.</li>
+        <li>On-screen guidance appears when the scene is too dark, you move too fast, you are too close or too far, or the object leaves the frame. Use brighter light, move slowly, and keep the object in view.</li>
+        <li>Leave the app on screen while it builds the 3D model. Switching away can stop processing.</li>
+      </ul>
+
+      <h2>8. If reconstruction fails or stops</h2>
+      <p>
+        Photos are kept if model building fails, if you cancel processing, or if the app quits during processing. The scan stays in the list as “처리 필요” (needs processing).
+      </p>
+      <ul>
+        <li>On failure the app shows “3D 모델을 만들지 못했습니다” (Couldn’t create a 3D model) and explains that the photos are kept. Tap <strong>다시 시도</strong> (Try Again) to rebuild from those photos.</li>
+        <li>If you cancel processing, the app says the photos are kept. Open the scan from the list and tap <strong>3D 모델 만들기</strong> (Create 3D Model).</li>
+        <li>Rebuilding from existing photos does not require an active subscription.</li>
+      </ul>
+      <p>
+        Confirming <strong>스캔 취소</strong> (Cancel Scan) on the capture screen deletes the photos taken so far. That is separate from cancelling 3D reconstruction.
+      </p>
+
+      <h2>9. Privacy policy and terms</h2>
+      <ul>
+        <li><a href="https://darkwind.github.io/DD3DScanner/privacy/">Privacy Policy</a></li>
+        <li><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener noreferrer">Apple Standard EULA</a></li>
+      </ul>
+    </section>
+
+    <footer>
+      &copy; 2026 Lee Sung-Jae. All rights reserved.
+    </footer>
+  </main>
+</body>
+</html>
